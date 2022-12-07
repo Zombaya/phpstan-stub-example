@@ -1,0 +1,22 @@
+{
+    "name": "zombaya/phpstan-stub-example",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "scn/deepl-api-connector": "3.1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zombaya\\PhpstanStubExample\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zombaya",
+            "email": "Zombaya@users.noreply.github.com"
+        }
+    ]
+}

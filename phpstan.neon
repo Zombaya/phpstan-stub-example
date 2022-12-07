@@ -1,0 +1,13 @@
+parameters:
+	level: 9
+	paths:
+		- src
+	stubFiles:
+		- stubs/Deepl/DeeplClientInterface.stub
+		- stubs/Deepl/Model/FileSubmissionInterface.stub
+		- stubs/Deepl/Model/FileTranslationConfigInterface.stub
+		- stubs/Deepl/Model/FileTranslationStatusInterface.stub
+		- stubs/Deepl/Model/FileTranslationInterface.stub
+		- stubs/Deepl/Model/TranslationConfigInterface.stub
+		- stubs/Deepl/Model/TranslationInterface.stub
+		- stubs/Deepl/Model/UsageInterface.stub

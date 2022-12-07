@@ -1,0 +1,172 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Scn\DeeplApiConnector {
+    interface DeeplClientInterface
+    {
+        /**
+         * @return Model\UsageInterface
+         */
+        public function getUsage(): Model\UsageInterface;
+
+        /**
+         * @param Model\TranslationConfigInterface $translation
+         *
+         * @return Model\TranslationInterface
+         */
+        public function getTranslation(Model\TranslationConfigInterface $translation): Model\TranslationInterface;
+
+        /**
+         * @param string $text
+         * @param string $target_language
+         *
+         * @return Model\TranslationInterface
+         */
+        public function translate(string $text, string $target_language): Model\TranslationInterface;
+
+        /**
+         * @param Model\FileTranslationConfigInterface $fileTranslation
+         *
+         * @return Model\FileSubmissionInterface
+         */
+        public function translateFile(Model\FileTranslationConfigInterface $fileTranslation): Model\FileSubmissionInterface;
+
+        /**
+         * @param Model\FileSubmissionInterface $fileSubmission
+         *
+         * @return Model\FileTranslationStatusInterface
+         */
+        public function getFileTranslationStatus(Model\FileSubmissionInterface $fileSubmission): Model\FileTranslationStatusInterface;
+
+        /**
+         * @param Model\FileSubmissionInterface $fileSubmission
+         *
+         * @return Model\FileTranslationInterface
+         */
+        public function getFileTranslation(Model\FileSubmissionInterface $fileSubmission): Model\FileTranslationInterface;
+    }
+}
+
+
+namespace Scn\DeeplApiConnector\Model {
+    interface FileSubmissionInterface
+    {
+        public function getDocumentId(): string;
+
+        public function setDocumentId(string $documentId): FileSubmissionInterface;
+
+        public function getDocumentKey(): string;
+
+        public function setDocumentKey(string $documentKey): FileSubmissionInterface;
+    }
+
+    interface FileTranslationConfigInterface
+    {
+        public function getFileContent(): string;
+
+        public function setFileContent(string $fileContent): FileTranslationConfigInterface;
+
+        public function getFileName(): string;
+
+        public function setFileName(string $fileName): FileTranslationConfigInterface;
+
+        public function getTargetLang(): string;
+
+        public function setTargetLang(string $targetLang): FileTranslationConfigInterface;
+
+        public function getSourceLang(): string;
+
+        public function setSourceLang(string $sourceLang): FileTranslationConfigInterface;
+    }
+
+    interface FileTranslationInterface
+    {
+        public function getContent(): string;
+
+        public function setContent(string $content): FileTranslationInterface;
+    }
+
+    interface FileTranslationStatusInterface
+    {
+        public function getDocumentId(): string;
+
+        public function setDocumentId(string $documentId): FileTranslationStatusInterface;
+
+        public function getStatus(): string;
+
+        public function setStatus(string $status): FileTranslationStatusInterface;
+
+        public function getSecondsRemaining(): ?int;
+
+        public function setSecondsRemaining(?int $secondsRemaining): FileTranslationStatusInterface;
+
+        public function getBilledCharacters(): int;
+
+        public function setBilledCharacters(int $billedCharacters): FileTranslationStatusInterface;
+    }
+
+
+    interface TranslationConfigInterface
+    {
+        public function getText(): string;
+
+        public function setText(string $text): TranslationConfigInterface;
+
+        public function getTargetLang(): string;
+
+        public function setTargetLang(string $targetLang): TranslationConfigInterface;
+
+        public function getSourceLang(): string;
+
+        public function setSourceLang(string $sourceLang): TranslationConfigInterface;
+
+        /** @return array<mixed> */
+        public function getTagHandling(): array;
+
+        /** @param array<mixed> $tagHandling */
+        public function setTagHandling(array $tagHandling): TranslationConfigInterface;
+
+        /** @return array<mixed> */
+        public function getNonSplittingTags(): array;
+
+        /** @param array<mixed> $nonSplittingTags */
+        public function setNonSplittingTags(array $nonSplittingTags): TranslationConfigInterface;
+
+        /** @return array<mixed> */
+        public function getIgnoreTags(): array;
+
+        /** @param array<mixed> $ignoreTags */
+        public function setIgnoreTags(array $ignoreTags): TranslationConfigInterface;
+
+        public function getSplitSentences(): string;
+
+        public function setSplitSentences(string $splitSentences): TranslationConfigInterface;
+
+        public function getPreserveFormatting(): string;
+
+        public function setPreserveFormatting(string $preserveFormatting): TranslationConfigInterface;
+    }
+
+    interface TranslationInterface
+    {
+        public function getDetectedSourceLanguage(): string;
+
+        public function setDetectedSourceLanguage(string $detectedSourceLanguage): TranslationInterface;
+
+        public function getText(): string;
+
+        public function setText(string $text): TranslationInterface;
+    }
+
+    interface UsageInterface
+    {
+        public function getCharacterCount(): int;
+
+        public function setCharacterCount(int $characterCount): UsageInterface;
+
+        public function getCharacterLimit(): int;
+
+        public function setCharacterLimit(int $characterLimit): UsageInterface;
+    }
+}
